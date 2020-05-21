@@ -1,7 +1,10 @@
 const express = require('express');
 const fileUpload = require('express-fileupload');
-const app = express();
+var path = require('path');
+var parser = require('word-text-parser');
 
+const app = express();
+var Uploads = "/Uploads";
 const PORT = 8000;
 app.use('/form', express.static(__dirname + '/index.html'));
 
@@ -21,7 +24,7 @@ app.post('/upload', function(req, res) {
     return;
   }
 
-  console.log('req.files >>>', req.files); // eslint-disable-line
+  console.log('req.files >>>', sampleFile = req.files.sampleFile); // eslint-disable-line
 
   sampleFile = req.files.sampleFile;
 
@@ -31,10 +34,17 @@ app.post('/upload', function(req, res) {
     if (err) {
       return res.status(500).send(err);
     }
-
+        
     res.send('File uploaded to ' + uploadPath);
   });
+  //var absPath = path.join(__dirname + Uploads ,'student info.docx');
+  parser( uploadPath,function(resultList){
+      console.log(resultList)
+      console.log(typeOf(resultList))
+  })
+
 });
+
 
 app.listen(PORT, function() {
   console.log('Express server listening on port ', PORT); // eslint-disable-line
