@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "doc-parser": "^0.4.9",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "file-upload": "0.0.0"
   }
 }
